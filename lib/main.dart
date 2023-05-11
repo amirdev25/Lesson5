@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lesson5/pages/home_page.dart';
+import 'package:lesson5/pages/login_page.dart';
+import 'package:lesson5/pages/splash_page.dart';
 
 void main() {
   runApp(const Lesson5());
@@ -11,7 +13,7 @@ class Lesson5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
+      home: SplashPage(),
     );
   }
 }

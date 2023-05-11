@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:lesson5/data/models/story_model.dart';
 
 class StoryItem extends StatelessWidget {
   StoryItem({
     Key? key,
     required this.index,
+    required this.storyModel,
   }) : super(key: key);
 
   int index;
-  bool isLive = true;
+  StoryModel storyModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,9 @@ class StoryItem extends StatelessWidget {
                         bottom: 10.0,
                         right: 10.0,
                       ),
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 26,
-                        backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
-                        ),
+                        backgroundImage: NetworkImage(storyModel.imgUrl),
                       ),
                     ),
                     Container(
@@ -52,17 +52,17 @@ class StoryItem extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(bottom: 6.0),
+                      margin: const EdgeInsets.only(bottom: 6.0),
                       height: 56,
                       width: 56,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
                           colors: [
-                            isLive == true
+                            storyModel.isLive == true
                                 ? Color(0xff6c00fe)
                                 : Color(0xfff47e00),
-                            isLive == true
+                            storyModel.isLive == true
                                 ? Color(0xfff40096)
                                 : Color(0xfff47e00),
                           ],
@@ -71,16 +71,15 @@ class StoryItem extends StatelessWidget {
                         ),
                       ),
                       padding: const EdgeInsets.all(2.0),
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: CircleAvatar(
                           radius: 23,
-                          backgroundImage: NetworkImage(
-                              "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"),
+                          backgroundImage: NetworkImage(storyModel.imgUrl),
                         ),
                       ),
                     ),
-                    isLive == true
+                    storyModel.isLive == true
                         ? Container(
                             height: 16,
                             width: 24,
@@ -115,7 +114,7 @@ class StoryItem extends StatelessWidget {
           const SizedBox(
             height: 8.0,
           ),
-          Text("Votre story")
+          Text(storyModel.name)
         ],
       ),
     );

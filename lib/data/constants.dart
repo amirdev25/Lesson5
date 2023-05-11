@@ -7,4 +7,6 @@ class Constants {
   static const POST_DESCRIPTION = "post_description";
   static const COMMENT_COUNT = "comment_count";
   static const IS_LIVE = "is_live";
+  static const IS_LOGIN = "is_login";
+
 }

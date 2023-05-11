@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lesson5/data/models/post_model.dart';
 
 class PostItem extends StatelessWidget {
-  const PostItem({Key? key}) : super(key: key);
+  PostItem({Key? key, required this.postModel}) : super(key: key);
+  PostModel postModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,24 +22,23 @@ class PostItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 20,
-                      backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=800"),
+                      backgroundImage: NetworkImage(postModel.avatarUrl),
                     ),
                     const SizedBox(
                       width: 8.0,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          "Abror Sharopov",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          postModel.fullName,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "sharopov7121",
-                          style: TextStyle(fontSize: 12.0),
+                          postModel.username,
+                          style: const TextStyle(fontSize: 12.0),
                         ),
                       ],
                     ),
@@ -54,11 +55,11 @@ class PostItem extends StatelessWidget {
             height: 4.0,
           ),
           Image.network(
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
+            postModel.postUrl,
             fit: BoxFit.cover,
           ),
           Container(
-            margin: EdgeInsets.all(16.0),
+            margin: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,18 +86,17 @@ class PostItem extends StatelessWidget {
                 const SizedBox(
                   height: 8.0,
                 ),
-                const Text("Aimé par Gabdu et d’autres personnes"),
+                Text(postModel.postTitle),
                 const SizedBox(
                   height: 8.0,
                 ),
-                const Text(
-                    "ArthurHazan Quel plaisir de retrouver mes étudiants de Web 2 ! Ils ont tellement progressés depuis l’année dernière ! #Proud"),
+                Text(postModel.postDescription),
                 const SizedBox(
                   height: 8.0,
                 ),
-                const Text(
-                  "Voir les 10 commentaires",
-                  style: TextStyle(color: Colors.grey),
+                Text(
+                  "Voir les ${postModel.commentCount} commentaires",
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ],
             ),
